@@ -7,11 +7,11 @@
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: var(--white);
 }
 ::-webkit-scrollbar-thumb {
   background-color: rgba(128, 128, 128, 0.425);
-  border-radius: 8px;
+  border-radius: var(--border-md);
 }
 
 .sidebarWrapper {
@@ -29,7 +29,7 @@
   width: 150px;
   border: none;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: var(--border-sm);
   font-weight: 500;
 }
 

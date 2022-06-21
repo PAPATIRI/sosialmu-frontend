@@ -3,6 +3,23 @@
   padding: 0;
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
+  --primary: #1877f2;
+  --black: black;
+  --accent: green;
+  --light-accent: limegreen;
+  --white: #f1f1f1;
+  --red: red;
+  --gray: gray;
+  --border-sm: 4px;
+  --border-md: 8px;
+  --border-lg: 12px;
+  --border-xl: 24px;
+  --fontsize-xs: 10px;
+  --fontsize-sm: 12px;
+  --fontsize-sm2: 14px;
+  --fontsize-md: 16px;
+  --fontsize-lg: 20px;
+  --fontsize-xl: 24px;
 }
 
 li {
