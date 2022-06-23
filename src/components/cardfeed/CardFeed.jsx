@@ -1,8 +1,17 @@
 import "./cardfeed.css";
 import { MoreVert } from "@mui/icons-material";
 import { Users } from "../../dummyData";
+import { useState } from "react";
 
 export default function CardFeed({ post }) {
+  const [like, setLike] = useState(post.like);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const likeHandler = () => {
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  };
+
   return (
     <div className="cardfeed">
       <div className="cardfeedWrapper">
@@ -31,9 +40,19 @@ export default function CardFeed({ post }) {
         </div>
         <div className="cardBottom">
           <div className="cardBottomLeft">
-            <img className="likeIcon" src="/assets/like.png" alt="likeIcon" />
-            <img className="likeIcon" src="/assets/heart.png" alt="loveIcon" />
-            <span className="postLikeCounter">{post.like} liked it</span>
+            <img
+              className="likeIcon"
+              src="/assets/like.png"
+              onClick={likeHandler}
+              alt="likeIcon"
+            />
+            <img
+              className="likeIcon"
+              src="/assets/heart.png"
+              onClick={likeHandler}
+              alt="loveIcon"
+            />
+            <span className="postLikeCounter">{like} liked it</span>
           </div>
           <div className="cardBottomRight">
             <span className="postCommentCounter">{post.comment} comments</span>
