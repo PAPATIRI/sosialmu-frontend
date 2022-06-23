@@ -28,28 +28,3 @@
 .rightbarTitle {
   margin-bottom: 20px;
 }
-.rightbarFriend {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-.rightbarProfileImgContainer {
-  margin-right: 10px;
-  position: relative;
-}
-.rightbarProfileImg {
-  width: 32px;
-  height: 32px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.rightbarOnline {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--light-accent);
-  position: absolute;
-  top: -2;
-  right: 0;
-  border: 1px solid var(--white);
-}
