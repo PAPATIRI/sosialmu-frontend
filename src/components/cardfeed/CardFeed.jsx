@@ -1,12 +1,23 @@
 import "./cardfeed.css";
 import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../dummyData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { format } from "timeago.js";
 
 export default function CardFeed({ post }) {
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`users/${post.userId}`);
+      setUser(res.data);
+    };
+
+    fetchUser();
+  }, [post.userId]);
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -19,17 +30,12 @@ export default function CardFeed({ post }) {
         <div className="cardTop">
           <div className="cardTopLeft">
             <img
-              src={
-                Users.filter((user) => user.id === post.userId)[0]
-                  .profilePicture
-              }
+              src={user.profilePicture || PF + "person/no_avatar.png"}
               alt=""
               className="cardProfileImg"
             />
-            <span className="cardProfileName">
-              {Users.filter((user) => user.id === post.userId)[0].username}
-            </span>
-            <span className="cardDate">5 minutes ago</span>
+            <span className="cardProfileName">{user.username}</span>
+            <span className="cardDate">{format(post.createdAt)}</span>
           </div>
           <div className="cardTopRight">
             <MoreVert htmlColor="gray" />
@@ -37,7 +43,7 @@ export default function CardFeed({ post }) {
         </div>
         <div className="cardCenter">
           <span className="cardText">{post?.desc}</span>
-          <img src={PF + post.photo} className="cardImg" alt="" />
+          <img src={PF + post.img} className="cardImg" alt="" />
         </div>
         <div className="cardBottom">
           <div className="cardBottomLeft">
