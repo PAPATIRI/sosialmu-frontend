@@ -6,6 +6,7 @@ import { useState } from "react";
 export default function CardFeed({ post }) {
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -36,7 +37,7 @@ export default function CardFeed({ post }) {
         </div>
         <div className="cardCenter">
           <span className="cardText">{post?.desc}</span>
-          <img src={post.photo} className="cardImg" alt="" />
+          <img src={PF + post.photo} className="cardImg" alt="" />
         </div>
         <div className="cardBottom">
           <div className="cardBottomLeft">
