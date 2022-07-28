@@ -3,6 +3,7 @@ import { MoreVert } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 export default function CardFeed({ post }) {
   const [like, setLike] = useState(post.likes.length);
@@ -12,7 +13,7 @@ export default function CardFeed({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`users/${post.userId}`);
+      const res = await axios.get(`/users?userId=${post.userId}`);
       setUser(res.data);
     };
 
@@ -29,11 +30,13 @@ export default function CardFeed({ post }) {
       <div className="cardfeedWrapper">
         <div className="cardTop">
           <div className="cardTopLeft">
-            <img
-              src={user.profilePicture || PF + "person/no_avatar.png"}
-              alt=""
-              className="cardProfileImg"
-            />
+            <Link to={`profile/${user.username}`}>
+              <img
+                src={user.profilePicture || PF + "person/no_avatar.png"}
+                alt=""
+                className="cardProfileImg"
+              />
+            </Link>
             <span className="cardProfileName">{user.username}</span>
             <span className="cardDate">{format(post.createdAt)}</span>
           </div>
